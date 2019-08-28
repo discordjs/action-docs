@@ -28,6 +28,7 @@ mv docs/docs.json out/$CURRENT_BRANCH.json
 
 echo "# Commit and push"
 cd out
+git pull
 git add .
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -47,6 +48,7 @@ mv webpack/discord.min.js out/discord.$CURRENT_BRANCH.min.js
 
 echo "# Commit and push"
 cd out
+git pull
 git add .
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
