@@ -2,4 +2,4 @@ name: 'Docs'
 description: 'Deploys docs to the /docs branch.'
 runs:
   using: 'node12'
-  main: 'dist/main.js'
+  main: 'dist/index.js'
