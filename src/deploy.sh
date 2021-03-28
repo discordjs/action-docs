@@ -18,12 +18,18 @@ else
   SOURCE_TYPE="tag"
 fi
 
-echo "::[notice] # Checkout the repo in the target branch so we can build docs and push to it"
+echo "::[notice] # Checkout the repo so we can build docs and push to it"
 TARGET_BRANCH="docs"
-git clone $REPO out -b $TARGET_BRANCH
-
+git clone $REPO out
 cd out
-git pull
+
+# Check if the target branch exists
+if [ ! "$(git ls-remote origin $TARGET_BRANCH)" ]; then
+	echo "::[notice] # Branch $TARGET_BRANCH not found, exiting action"
+	exit
+fi
+
+git checkout $TARGET_BRANCH
 echo "::[notice] # Move the generated JSON file to the newly-checked-out repo, to be committed and pushed"
 mv ../docs/docs.json $CURRENT_BRANCH.json
 echo "::[notice] # Commit and push"
